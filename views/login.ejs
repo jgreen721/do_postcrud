@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+  </head>
+  <body>
+    <h1>Login Page</h1>
+    <h3>- Say What Ya Feel-</h3>
+
+    <form action="signin" method="POST">
+      <div class="form-div">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="username..."
+          autocomplete="off"
+          class="form-control"
+        />
+      </div>
+      <div class="form-div">
+        <label for="password">Password:</label>
+        <input
+          type="text"
+          name="password"
+          id="password"
+          placeholder="password..."
+          autocomplete="off"
+          class="form-control"
+        />
+      </div>
+      <div class="form-div">
+        <button type="submit">Sign In</button>
+      </div>
+    </form>
+
+    <p>Footer&copy;</p>
+
+    <script>
+      //   let savedSession = document.cookie;
+      //   console.log("savedSession", savedSession);
+
+      //   fetch("/savedsession", {
+      //     headers: {
+      //       "Auth-Cookie": savedSession,
+      //     },
+      //   });
+    </script>
+  </body>
+</html>

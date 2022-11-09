@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      li {
+        list-style: none;
+      }
+
+      .posts-list {
+        width: 75%;
+        margin: 0 auto;
+      }
+
+      .post-item {
+        margin: 1rem;
+      }
+    </style>
+    <title>- Posts Dashboard -</title>
+  </head>
+  <body>
+    <h1>Welcome <%=user.username%></h1>
+    <button onclick="logout()">Logout</button>
+    <h4>TotalPost:<%=posts.length%></h4>
+
+    <form style="margin-top: 2rem" action="addpost" method="POST">
+      <div class="form-div">
+        <label for="post">Post:</label>
+        <input
+          type="text"
+          name="post"
+          placeholder="Add a new post"
+          autocomplete="off"
+        />
+      </div>
+      <div class="form-div">
+        <button type="submit">Add Post</button>
+      </div>
+    </form>
+    <ul class="posts-list">
+      <%posts.forEach(p=>{ %>
+      <li class="post-item">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+          "
+          class="top-row"
+        >
+          <h3><%=p.post%></h3>
+          <span data-id="<%=p._id%>" class="likeSpan">Like</span>
+          <span data-id="<%=p._id%>" class="deleteSpan">&times;</span>
+        </div>
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+          "
+          class="bottom-row"
+        >
+          <p>Likes:<%=p.likes%></p>
+          <p>Comments:<%=p.comments.length%></p>
+        </div>
+      </li>
+
+      <% }) %>
+    </ul>
+
+    <script>
+      function logout() {
+        document.cookie = "authtoken=;max-age=-9999999";
+        location.href = "/login";
+      }
+
+      document.querySelectorAll(".deleteSpan").forEach((s) => {
+        s.onclick = (e) => {
+          let id = e.target.getAttribute("data-id");
+          fetch(`/delete/${id}`, { method: "DELETE" });
+          location.reload();
+        };
+      });
+    </script>
+  </body>
+</html>
